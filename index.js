@@ -11,6 +11,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 const { constants } = require("buffer");
 
+// this will sotred gathered info
+const team = [];
+
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 console.log("-".repeat(50));
@@ -44,6 +47,8 @@ inquirer
   .then((response) => {
     //const { name, id, email, officeNumber } = response;
     const teamManager = new Manager(...Object.values(response));
+
+    team.push(teamManager);
 
     // console.log(teamManager);
     promptForNextEmployee();
@@ -79,7 +84,6 @@ const promptForNextEmployee = () => {
           buildPage();
           break;
       }
-
     });
 };
 
@@ -108,7 +112,8 @@ const promptForEngineer = () => {
       },
     ])
     .then((response) => {
-      // add new engineer to employees array
+      const newEngineer = new Engineer(...Object.values(response));
+      team.push(newEngineer);
       promptForNextEmployee();
     });
 };
@@ -138,6 +143,8 @@ const promptForIntern = () => {
       },
     ])
     .then((response) => {
+      const newIntern = new Intern(...Object.values(response));
+      team.push(newIntern);
       // add new intern to employees array
       promptForNextEmployee();
     });
@@ -145,5 +152,15 @@ const promptForIntern = () => {
 
 const buildPage = () => {
   console.log("Generating your HTML...");
-  // render(myArrayOfTeamMembers)
+  const HTML = render(team);
+  console.log(`Generated HTML, length: ${HTML.length} symbols.`);
+  console.log(`Writing to file...`);
+  fs.writeFile(outputPath, HTML, function (result) {
+    if (!result) {
+      console.log("Completed!");
+    } else {
+      console.log("Error ")
+      console.log(result);
+    }
+  });
 };
