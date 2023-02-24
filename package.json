@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "This will generate HTML file with info ont the workforce",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihacuo/Team-Profile-Generator.git"
+  },
+  "author": "Mihail Odnolko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mihacuo/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/mihacuo/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
